@@ -1,0 +1,29 @@
+html,
+body {
+    background-color: bisque;
+    height: 100%;
+}
+
+.main-div {
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.content {
+    background-color: burlywood;
+    padding: 5% 17%;
+    border-radius: 15px;
+}
+
+.container-fluid {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.info {
+    color: darkgreen;
+}
