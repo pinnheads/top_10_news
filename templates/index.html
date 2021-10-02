@@ -37,6 +37,9 @@
                     <a href="https://news.ycombinator.com/" target="_blank">hacker news</a> every morning
                 </h5>
                 {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+                <div>
+                    <a href="{{url_for('unsubscribe')}}">Unsubscribe</a>
+                </div>
             </div>
         </div>
 

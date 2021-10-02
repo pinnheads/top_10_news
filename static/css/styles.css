@@ -27,3 +27,7 @@ body {
 .info {
     color: darkgreen;
 }
+
+.error {
+    color: #bb2d4e;
+}
