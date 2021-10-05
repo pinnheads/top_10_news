@@ -13,11 +13,11 @@ class PrepareNews:
     def create_soup(self):
         soup = BeautifulSoup(self.yc_webpage, "html.parser")
         self.article_texts = [
-            article_tag.getText()
+            (article_tag.getText()).encode("utf-8", "strict")
             for article_tag in soup.findAll(name="a", class_="storylink")
         ]
         self.article_links = [
-            article_tag.get("href")
+            (article_tag.get("href")).encode("utf-8", "strict")
             for article_tag in soup.findAll(name="a", class_="storylink")
         ]
 

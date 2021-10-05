@@ -8,7 +8,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Top 10 Hacker News</title>
+        <title>Unsubscribe</title>
         <meta name="description" content="Add your email to receive top 10 news from hacker news website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
@@ -31,15 +31,11 @@
                 {% endfor %} {% endif %} {% endwith %}
                 <h1>Top 10 Hacker News</h1>
                 <hr />
-                <h5>
-                    Add your email to receive top 10 news from
-                    <br />
-                    <a href="https://news.ycombinator.com/" target="_blank">hacker news</a> every morning
-                </h5>
+                <h5>Add your email to unsubscribe from the mailing list</h5>
                 {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
                 <br />
                 <div>
-                    <a href="{{url_for('unsubscribe')}}">Unsubscribe</a>
+                    <a href="{{url_for('home')}}">Home</a>
                 </div>
             </div>
         </div>
