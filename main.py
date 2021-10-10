@@ -18,7 +18,9 @@ news = PrepareNews()
 Bootstrap(app)
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///user_emails.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = environ.get(
+    "DATABASE_URL", "sqlite:///blog.db"
+)
 db = SQLAlchemy(app)
 
 
@@ -127,4 +129,4 @@ def send_mail(secret_key):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
