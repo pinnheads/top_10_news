@@ -53,7 +53,7 @@ def get_10_news():
         news_link = (get_news["a_link"]).decode("utf-8", "strict")
         news_msg = news_text + "\n" + news_link + "\n\n"
         msg += news_msg
-
+    # print(msg)
     return msg
 
 
@@ -120,7 +120,7 @@ def send_mail(secret_key):
                     connection.sendmail(
                         from_addr=smtp_email,
                         to_addrs=user.email,
-                        msg=email_text,
+                        msg=(email_text).encode(),
                     )
                 print(f"Email sent to {user.email} from {smtp_email}")
             else:
