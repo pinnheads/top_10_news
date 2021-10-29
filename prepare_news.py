@@ -30,3 +30,9 @@ class PrepareNews:
             for index in range(10)
         ]
         return list_news
+
+
+if __name__ == "__main__":
+    pn = PrepareNews()
+    news = pn.create_news()
+    print(news)

@@ -24,6 +24,19 @@ app.config["SQLALCHEMY_DATABASE_URI"] = environ.get(
 db = SQLAlchemy(app)
 
 
+def send_mail_func(receiver_mail, email_text):
+    with smtplib.SMTP("smtp.gmail.com") as connection:
+        print("Connection Established")
+        connection.starttls()
+        connection.login(user=smtp_email, password=password)
+        connection.sendmail(
+            from_addr=smtp_email,
+            to_addrs=receiver_mail,
+            msg=(email_text).encode(),
+        )
+    print(f"Email sent to {receiver_mail} from {smtp_email}")
+
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(250), unique=True, nullable=False)
@@ -60,6 +73,7 @@ def get_10_news():
 @app.route("/", methods=["GET", "POST"])
 def home():
     form = EmailForm()
+    send_mail_func("utsavdeep01@gmail.com", "Test")
 
     if request.method == "POST" and form.validate_on_submit():
         user_email = form.email.data
@@ -107,22 +121,14 @@ password = environ["MY_SMTP_PASSWORD"]
 @app.route("/send_mail/<secret_key>")
 def send_mail(secret_key):
     news = get_10_news()
+    print(news)
     email_text = "Subject:Daily News\n\n"
     email_text += news
     all_users = db.session.query(User).all()
     if secret_key == system_key:
         for user in all_users:
             if news != "":
-                with smtplib.SMTP("smtp.gmail.com") as connection:
-                    print("Connection Established")
-                    connection.starttls()
-                    connection.login(user=smtp_email, password=password)
-                    connection.sendmail(
-                        from_addr=smtp_email,
-                        to_addrs=user.email,
-                        msg=(email_text).encode(),
-                    )
-                print(f"Email sent to {user.email} from {smtp_email}")
+                send_mail_func(receiver_mail=user.email, email_text=email_text)
             else:
                 print("Something went wrong")
     return redirect(url_for("home"))
