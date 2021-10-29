@@ -73,7 +73,6 @@ def get_10_news():
 @app.route("/", methods=["GET", "POST"])
 def home():
     form = EmailForm()
-    send_mail_func("utsavdeep01@gmail.com", "Test")
 
     if request.method == "POST" and form.validate_on_submit():
         user_email = form.email.data
@@ -121,7 +120,6 @@ password = environ["MY_SMTP_PASSWORD"]
 @app.route("/send_mail/<secret_key>")
 def send_mail(secret_key):
     news = get_10_news()
-    print(news)
     email_text = "Subject:Daily News\n\n"
     email_text += news
     all_users = db.session.query(User).all()
